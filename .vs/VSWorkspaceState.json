@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\CeleryInstaller"
   ],
-  "SelectedNode": "\\CeleryInstaller.sln",
+  "SelectedNode": "\\CeleryInstaller\\MainWindow.xaml.cs",
   "PreviewInSolutionExplorer": false
 }
