@@ -1,0 +1,167 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:CeleryInstaller.Controls">
+    <Style TargetType="{x:Type controls:RoundButton}">
+        <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}"/>
+        <Setter Property="Background" Value="{StaticResource HighlightBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource DarkHighlightBrush}"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="CornerRadius" Value="3"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:RoundButton}">
+                    <Border x:Name="Border" 
+                            CornerRadius="{TemplateBinding CornerRadius}" Background="{TemplateBinding Background}" 
+                            BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition From="MouseOver" To="Normal" GeneratedDuration="0:0:0.15" />
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="Border" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" 
+                                                        To="{StaticResource LightHighlightColor}" Duration="0:0:0.15" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="Border" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" 
+                                                        To="{StaticResource DarkHighlightColor}" Duration="0:0:0.15" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type controls:RoundButton}"  x:Key="GrayButton">
+        <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}"/>
+        <Setter Property="Background" Value="{StaticResource BorderBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource DarkBorderBrush}"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="CornerRadius" Value="3"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:RoundButton}">
+                    <Border x:Name="Border" 
+                            CornerRadius="{TemplateBinding CornerRadius}" Background="{TemplateBinding Background}" 
+                            BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition From="MouseOver" To="Normal" GeneratedDuration="0:0:0.15" />
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="Border" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" 
+                                                        To="{StaticResource LightBorderColor}" Duration="0:0:0.15" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="Border" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" 
+                                                        To="{StaticResource DarkBorderColor}" Duration="0:0:0.15" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type controls:RoundButton}" x:Key="DarkGrayButton">
+        <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}"/>
+        <Setter Property="Background" Value="{StaticResource LightBackgroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource DarkBorderBrush}"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="CornerRadius" Value="3"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:RoundButton}">
+                    <Border x:Name="Border" 
+                            CornerRadius="{TemplateBinding CornerRadius}" Background="{TemplateBinding Background}" 
+                            BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition From="MouseOver" To="Normal" GeneratedDuration="0:0:0.15" />
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="Border" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" 
+                                                        To="{StaticResource DarkBorderColor}" Duration="0:0:0.15" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="Border" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" 
+                                                        To="{StaticResource BackgroundColor}" Duration="0:0:0.15" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type controls:RoundButton}" x:Key="BackgroundButton">
+        <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}"/>
+        <Setter Property="Background" Value="{StaticResource BackgroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource LightBackgroundBrush}"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="CornerRadius" Value="3"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:RoundButton}">
+                    <Border x:Name="Border" 
+                            CornerRadius="{TemplateBinding CornerRadius}" Background="{TemplateBinding Background}" 
+                            BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition From="MouseOver" To="Normal" GeneratedDuration="0:0:0.15" />
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="Border" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" 
+                                                        To="{StaticResource DarkBorderColor}" Duration="0:0:0.15" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="Border" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" 
+                                                        To="{StaticResource LightBackgroundColor}" Duration="0:0:0.15" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

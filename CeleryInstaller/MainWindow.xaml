@@ -4,9 +4,58 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CeleryInstaller"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
+        xmlns:controls="clr-namespace:CeleryInstaller.Controls"
+        xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
+        mc:Ignorable="d" ResizeMode="NoResize" WindowStyle="SingleBorderWindow"
+        WindowStartupLocation="CenterScreen"
+        Title="MainWindow" Height="450" Width="750" Loaded="Window_Loaded">
+    <shell:WindowChrome.WindowChrome>
+        <shell:WindowChrome CaptionHeight="30" 
+                            UseAeroCaptionButtons="False" 
+                            NonClientFrameEdges="None"
+                            ResizeBorderThickness="0"/>
+    </shell:WindowChrome.WindowChrome>
+    <Grid Background="{StaticResource BackgroundBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" Background="{StaticResource BackgroundBrush}">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <controls:RoundButton Width="40" Style="{StaticResource BackgroundButton}"
+                                      shell:WindowChrome.IsHitTestVisibleInChrome="True"
+                                      Click="MinimizeButton_Click" CornerRadius="0">
+                    <Path Stroke="{StaticResource ForegroundBrush}"
+                                      Stretch="Uniform" StrokeThickness="1.15"
+                                      Width="11"
+                                      Data="M2,2 l1,0"
+                                      StrokeStartLineCap="Round"
+                                      StrokeEndLineCap="Round"/>
+                </controls:RoundButton>
+                <controls:RoundButton  Width="40" Style="{StaticResource BackgroundButton}"
+                                    shell:WindowChrome.IsHitTestVisibleInChrome="True"
+                                    Click="ExitButton_Click" CornerRadius="0">
+                    <Path Stroke="{StaticResource ForegroundBrush}"
+                                      Stretch="Uniform"
+                                      Width="11"
+                                      StrokeStartLineCap="Round"
+                                      StrokeEndLineCap="Round"
+                                      Data="M21 21L12 12M12 12L3 3M12 12L21.0001 3M12 12L3 21.0001"/>
+                </controls:RoundButton>
+            </StackPanel>
+        </Border>
+        <Grid x:Name="MainGrid" Grid.Row="1" Background="{StaticResource BackgroundBrush}" Margin="0,0,0,35">
+            
+        </Grid>
+        <Border x:Name="BottomBar" Grid.Row="1" Background="{StaticResource LightBackgroundBrush}" 
+                VerticalAlignment="Bottom" Height="35">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <controls:RoundButton x:Name="BackButton" Content="Back" 
+                                      Width="60" Margin="7,7,0,7"
+                                      Style="{StaticResource GrayButton}"
+                                      Click="BackButton_Click"/>
+                <controls:RoundButton x:Name="NextButton" Content="Next" Width="60" Margin="7" Click="NextButton_Click"/>
+            </StackPanel>
+        </Border>
     </Grid>
 </Window>
