@@ -9,8 +9,8 @@
              Loaded="UserControl_Loaded">
     <Grid Background="{StaticResource BackgroundBrush}">
         <TextBlock Foreground="{StaticResource ForegroundBrush}" 
-                   Text="Downloading" FontSize="20"
-                   HorizontalAlignment="Left" VerticalAlignment="Top"
-                   Margin="40"/>
+                   Text="Downloading" FontSize="30"
+                   HorizontalAlignment="Center" VerticalAlignment="Top"
+                   Margin="80"/>
     </Grid>
 </UserControl>

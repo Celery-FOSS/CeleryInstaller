@@ -2,15 +2,17 @@
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Net.Http;
-using System.Text.Json;
+using CeleryInstaller.Json;
 
-namespace CeleryInstaller.Core {
-
-    public class Updater {
-        public static async Task<Stream> GetLatestZip(Configuration.ExecutorPreference executor) {
-            switch (executor) {
-                case Configuration.ExecutorPreference.LegacyUI: 
+namespace CeleryInstaller.Core
+{
+    public class Updater
+    {
+        public static async Task<Stream> GetLatestZip(Configuration.ExecutorPreference executor)
+        {
+            switch (executor)
+            {
+                case Configuration.ExecutorPreference.LegacyUI:
                     const string LegacyUiUrl = "https://cdn.sussy.dev/celery/release.zip";
                     return await App.HttpClient.GetStreamAsync(LegacyUiUrl);
                 case Configuration.ExecutorPreference.NewUI:
@@ -20,12 +22,12 @@ namespace CeleryInstaller.Core {
 
                     if (string.IsNullOrEmpty(json))
                         throw new Exception("Failed to obtain information for the New UI download!");
-                    
-                    var releaseInformation = JsonSerializer.Deserialize<GithubRelease>(json);
+
+                    var releaseInformation = json.FromJson<GithubRelease>();
 
                     if (releaseInformation == null)
                         throw new Exception("Failed to obtain release information!");
-                    
+
                     // Get the first zip that this release contains.
                     var targetAsset = releaseInformation.assets.First(x => x.content_type == "application/x-zip-compressed");
 
@@ -35,4 +37,4 @@ namespace CeleryInstaller.Core {
             }
         }
     }
-}
+}   

@@ -1,5 +1,9 @@
-﻿namespace CeleryInstaller.Core {
-    public class GithubRelease {
+﻿using System;
+
+namespace CeleryInstaller.Core
+{
+    public class GithubRelease
+    {
         /// <summary>
         ///     URL containing all information of the release.
         /// </summary>
@@ -63,7 +67,8 @@
         public string body { get; set; }
     }
 
-    public class Author {
+    public class Author
+    {
         /// <summary>
         ///     The username of the user.
         /// </summary>
@@ -106,7 +111,8 @@
         public bool site_admin { get; set; }
     }
 
-    public class Asset {
+    public class Asset
+    {
         /// <summary>
         ///     The URL containing information on this asset specifically (API Endpoint).
         /// </summary>

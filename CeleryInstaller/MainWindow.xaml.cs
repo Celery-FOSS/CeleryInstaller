@@ -1,8 +1,6 @@
-﻿using CeleryInstaller.Dialogs;
-using CeleryInstaller.Pages;
+﻿using CeleryInstaller.Pages;
 using CeleryInstaller.Utils;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
