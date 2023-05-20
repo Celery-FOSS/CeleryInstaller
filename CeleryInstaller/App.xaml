@@ -25,7 +25,7 @@
                     <DrawingImage x:Key="CeleryIcon">
                         <DrawingImage.Drawing>
                             <DrawingGroup>
-                                <GeometryDrawing Brush="{StaticResource DarkForegroundBrush}" Geometry="{StaticResource CeleryLogo}" />
+                                <GeometryDrawing Brush="{StaticResource HighlightBrush}" Geometry="{StaticResource CeleryLogo}" />
                             </DrawingGroup>
                         </DrawingImage.Drawing>
                     </DrawingImage>
