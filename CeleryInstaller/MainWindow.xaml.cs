@@ -1,11 +1,11 @@
-﻿using CeleryInstaller.Pages;
+﻿using CeleryInstaller.Dialogs;
+using CeleryInstaller.Pages;
 using CeleryInstaller.Utils;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace CeleryInstaller 
 {
@@ -42,6 +42,17 @@ namespace CeleryInstaller
 
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            /*
+            FolderDialog fd = new FolderDialog
+            {
+                DefaultPath = ""
+            };
+
+            if (await fd.ShowDialog() == Dialogs.DialogResult.Ok)
+            {
+                Debug.WriteLine(fd.FolderPath);
+            }*/
+
             MainGrid.Children.Add(Pages[CurrentPage]);
             await Task.Delay(3500);
             AnimationUtils.AnimateHeight(BottomBar, 0, 35, AnimationUtils.EaseInOut, 400);

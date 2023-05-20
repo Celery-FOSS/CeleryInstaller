@@ -41,7 +41,7 @@
                             Padding="5"
                             SnapsToDevicePixels="True"
                             Background="{TemplateBinding Background}" 
-                            CornerRadius="5"
+                            CornerRadius="4"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             BorderBrush="{TemplateBinding BorderBrush}">
                         <ContentPresenter HorizontalAlignment="Left" MaxWidth="110" />

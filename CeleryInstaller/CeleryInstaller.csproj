@@ -38,6 +38,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
@@ -56,6 +57,24 @@
       <DependentUpon>InstallLocation.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\RoundButton.cs" />
+    <Compile Include="Dialogs\FolderDialog.cs" />
+    <Compile Include="Dialogs\FolderDialogWindow.xaml.cs">
+      <DependentUpon>FolderDialogWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FileTreeView\BaseObject.cs" />
+    <Compile Include="FileTreeView\FileManager.cs" />
+    <Compile Include="FileTreeView\FolderManager.cs" />
+    <Compile Include="FileTreeView\ShellClasses\DummyFileSystemObjectInfo.cs" />
+    <Compile Include="FileTreeView\Enums\FileAttribute.cs" />
+    <Compile Include="FileTreeView\ShellClasses\FileSystemObjectInfo.cs" />
+    <Compile Include="FileTreeView\Enums\IconSize.cs" />
+    <Compile Include="FileTreeView\Interop.cs" />
+    <Compile Include="FileTreeView\Enums\ItemState.cs" />
+    <Compile Include="FileTreeView\Enums\ItemType.cs" />
+    <Compile Include="FileTreeView\PropertyNotifier.cs" />
+    <Compile Include="FileTreeView\Enums\ShellAttribute.cs" />
+    <Compile Include="FileTreeView\Structs\ShellFileInfo.cs" />
+    <Compile Include="FileTreeView\ShellManager.cs" />
     <Compile Include="Pages\ChoicePage.xaml.cs">
       <DependentUpon>ChoicePage.xaml</DependentUpon>
     </Compile>
@@ -70,6 +89,10 @@
     </Compile>
     <Compile Include="Utils\AnimationUtils.cs" />
     <Page Include="Controls\InstallLocation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\FolderDialogWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
