@@ -3,7 +3,6 @@ using CeleryInstaller.Utils;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
-using System.Runtime.InteropServices.ComTypes;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;

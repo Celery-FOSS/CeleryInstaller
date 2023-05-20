@@ -15,7 +15,6 @@ namespace CeleryInstaller.Dialogs
             bool selected = false;
             window.DialogClosed += (s, e) =>
             {
-                Debug.WriteLine("closed");
                 closed = true;
                 FolderPath = e.Path;
                 selected = e.Selected;

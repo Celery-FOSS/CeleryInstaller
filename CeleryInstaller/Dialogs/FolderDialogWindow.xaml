@@ -24,7 +24,7 @@
             <RowDefinition Height="30"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" Grid.ColumnSpan="2" Margin="720,0,0,0">
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" Grid.ColumnSpan="2">
             <controls:RoundButton Width="40" Style="{StaticResource BackgroundButton}"
                                   shell:WindowChrome.IsHitTestVisibleInChrome="True"
                                   Click="MinimizeButton_Click" CornerRadius="0">
@@ -48,7 +48,7 @@
         </StackPanel>
         <Grid Grid.Row="1" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="200" MinWidth="50" MaxWidth="500"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Border BorderBrush="{StaticResource BorderBrush}" BorderThickness="1"
@@ -73,6 +73,7 @@
                     </TreeView>
                 </ScrollViewer>
             </Border>
+            <GridSplitter Grid.Column="0" Width="5" Background="Transparent"/>
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
