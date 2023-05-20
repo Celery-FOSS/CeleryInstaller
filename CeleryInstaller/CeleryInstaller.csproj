@@ -46,9 +46,7 @@
     </Reference>
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
-<<<<<<< HEAD
     <Reference Include="System.Drawing" />
-=======
     <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
     </Reference>
@@ -92,7 +90,6 @@
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
->>>>>>> 34bc3ebad2021b839d56d49ee3c8f690b6798f07
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
@@ -111,7 +108,6 @@
       <DependentUpon>InstallLocation.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\RoundButton.cs" />
-<<<<<<< HEAD
     <Compile Include="Dialogs\FolderDialog.cs" />
     <Compile Include="Dialogs\FolderDialogWindow.xaml.cs">
       <DependentUpon>FolderDialogWindow.xaml</DependentUpon>
@@ -130,10 +126,8 @@
     <Compile Include="FileTreeView\Enums\ShellAttribute.cs" />
     <Compile Include="FileTreeView\Structs\ShellFileInfo.cs" />
     <Compile Include="FileTreeView\ShellManager.cs" />
-=======
     <Compile Include="Core\GithubReleaseJson.cs" />
     <Compile Include="Core\Updater.cs" />
->>>>>>> 34bc3ebad2021b839d56d49ee3c8f690b6798f07
     <Compile Include="Pages\ChoicePage.xaml.cs">
       <DependentUpon>ChoicePage.xaml</DependentUpon>
     </Compile>
