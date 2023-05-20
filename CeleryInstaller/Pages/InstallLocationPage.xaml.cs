@@ -1,7 +1,7 @@
 ﻿using CeleryInstaller.Controls;
+using CeleryInstaller.Dialogs;
 using System.IO;
 using System.Reflection;
-using System.Windows.Forms;
 using System.Windows.Media;
 
 namespace CeleryInstaller.Pages
@@ -21,15 +21,14 @@ namespace CeleryInstaller.Pages
                 App.Instance.CanContinue = true;
                 App.Instance.NextButton.Background = new SolidColorBrush(Color.FromRgb(37, 167, 50));
             }));
-            LocationOptionsList.Children.Add(new InstallLocation("Custom Directory", "Choose where you want Celery to install.", (s, e) =>
+            LocationOptionsList.Children.Add(new InstallLocation("Custom Directory", "Choose where you want Celery to install.", async (s, e) =>
             {
-                using (FolderBrowserDialog dialog = new FolderBrowserDialog())
+                FolderDialog fd = new FolderDialog();
+                if (await fd.ShowDialog() == Dialogs.DialogResult.Ok)
                 {
-                    if (dialog.ShowDialog() == DialogResult.OK)
-                    {
-                        configuration.InstallLocation = Path.Combine(dialog.SelectedPath, "Celery");
-                    }
+                    configuration.InstallLocation = Path.Combine(fd.FolderPath, "Celery");
                 }
+
                 PathBox.Text = configuration.InstallLocation;
                 App.Instance.CanContinue = true;
                 App.Instance.NextButton.Background = new SolidColorBrush(Color.FromRgb(37, 167, 50));

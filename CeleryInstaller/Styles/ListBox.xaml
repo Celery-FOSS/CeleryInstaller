@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <AlternationConverter x:Key="BackgroundConverter">
         <SolidColorBrush Color="{StaticResource BackgroundColor}" />
-        <SolidColorBrush Color="{StaticResource HighlightColor}" />
+        <SolidColorBrush Color="{StaticResource LightBackgroundColor}" />
     </AlternationConverter>
 
     <Style TargetType="{x:Type ListBox}">
@@ -48,7 +48,7 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsSelected" Value="true">
-                            <Setter TargetName="Border" Property="Background" Value="{StaticResource HighlightBrush}"/>
+                            <Setter TargetName="Border" Property="Background" Value="{StaticResource DarkBorderBrush}"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Foreground" Value="{StaticResource DarkForegroundBrush}"/>

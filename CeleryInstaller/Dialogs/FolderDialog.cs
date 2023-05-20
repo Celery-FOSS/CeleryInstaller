@@ -5,7 +5,6 @@ namespace CeleryInstaller.Dialogs
 {
     public class FolderDialog
     {
-        public string DefaultPath { get; set; }
         public string FolderPath { get; private set; }
 
         public async Task<DialogResult> ShowDialog()

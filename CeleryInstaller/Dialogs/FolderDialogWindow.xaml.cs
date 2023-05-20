@@ -1,7 +1,6 @@
 ﻿using CeleryInstaller.FileTreeView.ShellClasses;
 using System;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -13,6 +12,7 @@ namespace CeleryInstaller.Dialogs
     public partial class FolderDialogWindow : Window
     {
         public event EventHandler<DialogClosedEventArgs> DialogClosed;
+        public string CurrentPath { get; set; }
 
         public FolderDialogWindow()
         {
@@ -143,6 +143,7 @@ namespace CeleryInstaller.Dialogs
         {
             FileSystemObjectInfo obj = (FileSystemObjectInfo)e.NewValue;
             SelectedPathBox.Text = obj.FileSystemInfo.Name;
+            CurrentPath = obj.FileSystemInfo.FullName;
             FolderList.Clear();
             try
             {
@@ -177,18 +178,6 @@ namespace CeleryInstaller.Dialogs
             catch { }
         }
 
-        private void ListBox_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            ListBox listBox = sender as ListBox;
-            Debug.WriteLine("1");
-            if (listBox.SelectedItem == null)
-                return;
-
-            Debug.WriteLine("2");
-            FolderItem item = listBox.SelectedItem as FolderItem;
-            SelectedPathBox.Text = item.Name;
-        }
-
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ListBox listBox = sender as ListBox;
@@ -196,6 +185,20 @@ namespace CeleryInstaller.Dialogs
                 return;
 
             SelectedPathBox.Text = ((FolderItem)listBox.SelectedItem).Name;
+            CurrentPath = ((FolderItem)listBox.SelectedItem).FullPath;
+        }
+
+        private void SelectPathButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (DialogClosed != null)
+            {
+                DialogClosed(this, new DialogClosedEventArgs
+                {
+                    Selected = true,
+                    Path = CurrentPath
+                });
+            }
+            Hide();
         }
     }
 
