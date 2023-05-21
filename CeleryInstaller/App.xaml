@@ -35,6 +35,7 @@
                 <ResourceDictionary Source="/Styles/ComboBox.xaml"/>
                 <ResourceDictionary Source="/Styles/ContextMenu.xaml"/>
                 <ResourceDictionary Source="/Styles/ListBox.xaml"/>
+                <ResourceDictionary Source="/Styles/ProgressBar.xaml"/>
                 <ResourceDictionary Source="/Styles/ScrollBar.xaml"/>
                 <ResourceDictionary Source="/Styles/Slider.xaml"/>
                 <ResourceDictionary Source="/Styles/TextBox.xaml"/>

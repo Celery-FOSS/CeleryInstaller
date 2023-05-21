@@ -80,7 +80,7 @@
     <Compile Include="FileTreeView\Structs\ShellFileInfo.cs" />
     <Compile Include="FileTreeView\ShellManager.cs" />
     <Compile Include="Core\GithubReleaseJson.cs" />
-    <Compile Include="Core\Updater.cs" />
+    <Compile Include="Core\Installer.cs" />
     <Compile Include="Json\JsonParser.cs" />
     <Compile Include="Json\JsonWriter.cs" />
     <Compile Include="Pages\ChoicePage.xaml.cs">
@@ -151,6 +151,10 @@
     <Page Include="Styles\ListBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\ProgressBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\ScrollBar.xaml">
       <Generator>MSBuild:Compile</Generator>

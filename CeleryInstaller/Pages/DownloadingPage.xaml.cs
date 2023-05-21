@@ -1,8 +1,11 @@
 ﻿using CeleryInstaller.Core;
 using CeleryInstaller.Utils;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
+using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -35,36 +38,10 @@ namespace CeleryInstaller.Pages
             if (File.Exists(zipFile))
                 File.Delete(zipFile);
 
-            await Task.Run(async () =>
-            {
-                using (Stream stream = await Updater.GetLatestZip(Configuration.PreferedExecutor))
-                {
-                    using (FileStream fs = new FileStream(zipFile, FileMode.CreateNew))
-                    {
-                        await stream.CopyToAsync(fs);
-                        using (ZipArchive archive = new ZipArchive(fs))
-                        {
-                            foreach (ZipArchiveEntry file in archive.Entries)
-                            {
-                                string completeFileName = Path.Combine(Configuration.InstallLocation, file.FullName);
-                                if (file.Name == "")
-                                {
-                                    Directory.CreateDirectory(completeFileName);
-                                    continue;
-                                }
-
-                                try
-                                {
-                                    file.ExtractToFile(completeFileName, true);
-                                }
-                                catch { }
-                            }
-                        }
-                    }
-                }
-            });
-
-            File.Delete(zipFile);
+            IProgress<string> progressString = new Progress<string>(s => StatusBar.Text = s);
+            IProgress<float> progressFloat = new Progress<float>(p => ProgressBar.Value = p * 100);
+            await Installer.InstallLatestVersion(Configuration, progressString, progressFloat);
+            
             new Process
             {
                 StartInfo = new ProcessStartInfo

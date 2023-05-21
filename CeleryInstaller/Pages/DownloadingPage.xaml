@@ -12,5 +12,8 @@
                    Text="Downloading" FontSize="30"
                    HorizontalAlignment="Center" VerticalAlignment="Top"
                    Margin="80"/>
+        <TextBlock x:Name="StatusBar" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="50" 
+                   Foreground="{StaticResource DarkForegroundBrush}" FontSize="13"/>
+        <ProgressBar x:Name="ProgressBar" VerticalAlignment="Bottom" Margin="30" Height="10"/>
     </Grid>
 </UserControl>
