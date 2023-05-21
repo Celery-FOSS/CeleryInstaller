@@ -17,10 +17,6 @@ namespace CeleryInstaller.Core
             if (!Directory.Exists(configuration.InstallLocation))
                 Directory.CreateDirectory(configuration.InstallLocation);
 
-            string zipFile = Path.Combine(configuration.InstallLocation, "Celery.zip");
-            if (File.Exists(zipFile))
-                File.Delete(zipFile);
-
             string url = "";
             switch (configuration.PreferedExecutor)
             {
@@ -49,39 +45,36 @@ namespace CeleryInstaller.Core
             if (url == "")
                 return;
 
-            using (FileStream fs = new FileStream(zipFile, FileMode.CreateNew))
+            using (MemoryStream memStream = new(8000000)) // 8000000 == 8 Megabytes
             {
-                await App.HttpClient.DownloadAsync(url, fs, progressString, progressFloat);
-                await Task.Run(() =>
-                {
+                await App.HttpClient.DownloadAsync(url, memStream, progressString, progressFloat);
+                memStream.Position = 0; // Reset the position of the MemoryStream to avoid future issues. 
+                await Task.Run(() => {
                     // Extract the zip to the install location
-                    using (ZipArchive archive = new ZipArchive(fs))
+                    using ZipArchive archive = new ZipArchive(memStream);
+                    
+                    ReadOnlyCollection<ZipArchiveEntry> entries = archive.Entries;
+                    for (int i = 0; i < entries.Count; i++)
                     {
-                        ReadOnlyCollection<ZipArchiveEntry> entries = archive.Entries;
-                        for (int i = 0; i < entries.Count; i++)
+                        ZipArchiveEntry entry = entries[i];
+                        string completeFileName = Path.Combine(configuration.InstallLocation, entry.FullName);
+                        if (entry.Name == "")
                         {
-                            ZipArchiveEntry entry = entries[i];
-                            string completeFileName = Path.Combine(configuration.InstallLocation, entry.FullName);
-                            if (entry.Name == "")
-                            {
-                                Directory.CreateDirectory(completeFileName);
-                                continue;
-                            }
-
-                            float progress = (float)(i + 1) / entries.Count;
-                            progressFloat.Report(progress);
-                            progressString.Report($"Extracting... {Math.Round(progress * 100)}%");
-                            try
-                            {
-                                entry.ExtractToFile(completeFileName, true);
-                            }
-                            catch { }
+                            Directory.CreateDirectory(completeFileName);
+                            continue;
                         }
-                        progressString.Report("Extraction Complete!");
+
+                        float progress = (float)(i + 1) / entries.Count;
+                        progressFloat.Report(progress);
+                        progressString.Report($"Extracting... {Math.Round(progress * 100)}%");
+                        try {
+                            entry.ExtractToFile(completeFileName, true);
+                        }
+                        catch { }
                     }
+                    progressString.Report("Extraction Complete!");
                 });
             }
-            File.Delete(zipFile);
         }
 
         public static async Task DownloadAsync(this HttpClient client, string requestUri, Stream destination, IProgress<string> progressString, IProgress<float> progressFloat, CancellationToken cancellationToken = default)
