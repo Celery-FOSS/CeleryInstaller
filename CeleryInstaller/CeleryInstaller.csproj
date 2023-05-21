@@ -35,6 +35,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>CeleryIcon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
     <Reference Include="System" />
@@ -192,6 +195,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\CeleryLegacy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="CeleryIcon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
