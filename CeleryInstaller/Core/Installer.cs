@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -56,23 +57,23 @@ namespace CeleryInstaller.Core
                     // Extract the zip to the install location
                     using (ZipArchive archive = new ZipArchive(fs))
                     {
-                        int i = 0;
-                        int amount = archive.Entries.Count;
-                        foreach (ZipArchiveEntry file in archive.Entries)
+                        ReadOnlyCollection<ZipArchiveEntry> entries = archive.Entries;
+                        for (int i = 0; i < entries.Count; i++)
                         {
-                            i++;
-                            string completeFileName = Path.Combine(configuration.InstallLocation, file.FullName);
-                            if (file.Name == "")
+                            ZipArchiveEntry entry = entries[i];
+                            string completeFileName = Path.Combine(configuration.InstallLocation, entry.FullName);
+                            if (entry.Name == "")
                             {
                                 Directory.CreateDirectory(completeFileName);
                                 continue;
                             }
-                            float progress = (float)i / amount;
+
+                            float progress = (float)(i + 1) / entries.Count;
                             progressFloat.Report(progress);
                             progressString.Report($"Extracting... {Math.Round(progress * 100)}%");
                             try
                             {
-                                file.ExtractToFile(completeFileName, true);
+                                entry.ExtractToFile(completeFileName, true);
                             }
                             catch { }
                         }
@@ -85,31 +86,26 @@ namespace CeleryInstaller.Core
 
         public static async Task DownloadAsync(this HttpClient client, string requestUri, Stream destination, IProgress<string> progressString, IProgress<float> progressFloat, CancellationToken cancellationToken = default)
         {
-            // Get the http headers first to examine the content length
-            using (var response = await client.GetAsync(requestUri, HttpCompletionOption.ResponseHeadersRead))
+            progressString.Report("Initializing download...");
+            using (HttpResponseMessage response = await client.GetAsync(requestUri, HttpCompletionOption.ResponseHeadersRead))
             {
-                var contentLength = response.Content.Headers.ContentLength;
-
-                using (var download = await response.Content.ReadAsStreamAsync())
+                long? contentLength = response.Content.Headers.ContentLength;
+                using (Stream downloadStream = await response.Content.ReadAsStreamAsync())
                 {
-                    // Ignore progress reporting when no progress reporter was 
-                    // passed or when the content length is unknown
                     if (!contentLength.HasValue)
                     {
-                        await download.CopyToAsync(destination);
+                        await downloadStream.CopyToAsync(destination);
                         return;
                     }
 
-                    // Convert absolute progress (bytes downloaded) into relative progress (0% - 100%)
-                    var relativeProgress = new Progress<long>(totalBytes => 
+                    IProgress<long> relativeProgress = new Progress<long>(totalBytes => 
                     {
                         float progress = (float)totalBytes / contentLength.Value;
                         progressFloat.Report(progress);
                         progressString.Report($"Downloading... {Math.Round(progress * 100)}%");
                     });
 
-                    // Use extension method to report progress while downloading
-                    await download.CopyToAsync(destination, 81920, relativeProgress, cancellationToken);
+                    await downloadStream.CopyToAsync(destination, 81920, relativeProgress, cancellationToken);
                     progressString.Report("Download Complete!");
                 }
             }
@@ -128,7 +124,7 @@ namespace CeleryInstaller.Core
             if (bufferSize < 0)
                 throw new ArgumentOutOfRangeException(nameof(bufferSize));
 
-            var buffer = new byte[bufferSize];
+            byte[] buffer = new byte[bufferSize];
             long totalBytesRead = 0;
             int bytesRead;
             while ((bytesRead = await source.ReadAsync(buffer, 0, buffer.Length, cancellationToken).ConfigureAwait(false)) != 0)
