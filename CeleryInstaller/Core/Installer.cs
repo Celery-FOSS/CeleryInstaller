@@ -28,18 +28,18 @@ namespace CeleryInstaller.Core
                     url = "https://cdn.sussy.dev/celery/release.zip";
                     break;
                 case Configuration.ExecutorPreference.NewUI:
-                    var json = await App.HttpClient.GetStringAsync("https://api.github.com/repos/sten-code/Celery/releases/latest");
+                    string json = await App.HttpClient.GetStringAsync("https://api.github.com/repos/sten-code/Celery/releases/latest");
 
                     if (string.IsNullOrEmpty(json))
                         throw new Exception("Failed to obtain information for the New UI download!");
 
-                    var releaseInformation = json.FromJson<GithubRelease>();
+                    GithubRelease releaseInformation = json.FromJson<GithubRelease>();
 
                     if (releaseInformation == null)
                         throw new Exception("Failed to obtain release information!");
 
                     // Get the first zip that this release contains.
-                    var targetAsset = releaseInformation.assets.First(x => x.content_type == "application/x-zip-compressed");
+                    Asset targetAsset = releaseInformation.assets.First(x => x.content_type == "application/x-zip-compressed");
                     url = targetAsset.browser_download_url;
                     break;
                 default:
