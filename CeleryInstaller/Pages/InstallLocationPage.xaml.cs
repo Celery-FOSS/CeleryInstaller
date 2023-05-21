@@ -4,11 +4,12 @@ using System;
 using System.IO;
 using System.Reflection;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 
 namespace CeleryInstaller.Pages
 {
-    public partial class InstallLocationPage : System.Windows.Controls.UserControl
+    public partial class InstallLocationPage : UserControl
     {
         public Configuration Configuration { get; set; }
 

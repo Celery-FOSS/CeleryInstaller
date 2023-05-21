@@ -7,7 +7,7 @@
         xmlns:controls="clr-namespace:CeleryInstaller.Controls"
         xmlns:classes="clr-namespace:CeleryInstaller.FileTreeView.ShellClasses"
         xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
-        mc:Ignorable="d" WindowStyle="SingleBorderWindow"
+        mc:Ignorable="d" WindowStyle="SingleBorderWindow" WindowStartupLocation="CenterOwner"
         Title="FolderDialogWindow" Height="450" Width="800">
     <shell:WindowChrome.WindowChrome>
         <shell:WindowChrome CaptionHeight="30" 
