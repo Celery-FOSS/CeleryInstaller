@@ -187,9 +187,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\CeleryNew.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\CeleryLegacy.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

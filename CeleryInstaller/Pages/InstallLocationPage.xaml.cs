@@ -41,7 +41,6 @@ namespace CeleryInstaller.Pages
                     configuration.InstallLocation = Path.Combine(path, "Celery");
                     PathBox.Text = configuration.InstallLocation;
                     App.Instance.CanContinue = true;
-                    App.Instance.NextButton.Background = new SolidColorBrush(Color.FromRgb(37, 167, 50));
                 }
                 else
                 {
@@ -58,7 +57,6 @@ namespace CeleryInstaller.Pages
                         configuration.InstallLocation = Path.Combine(fd.FolderPath, "Celery");
                         PathBox.Text = configuration.InstallLocation;
                         App.Instance.CanContinue = true;
-                        App.Instance.NextButton.Background = new SolidColorBrush(Color.FromRgb(37, 167, 50));
                     } 
                     else
                     {
@@ -68,17 +66,9 @@ namespace CeleryInstaller.Pages
             }));
         }
 
-        private void UserControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            if (Configuration.InstallLocation == "")
-            {
-                App.Instance.CanContinue = false;
-                App.Instance.NextButton.Background = new SolidColorBrush(Color.FromRgb(28, 125, 37));
-            } else
-            {
-                App.Instance.CanContinue = true;
-                App.Instance.NextButton.Background = new SolidColorBrush(Color.FromRgb(37, 167, 50));
-            }
+            App.Instance.CanContinue = Configuration.InstallLocation != "";
         }
     }
 }

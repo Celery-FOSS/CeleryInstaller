@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace CeleryInstaller 
 {
@@ -60,6 +61,14 @@ namespace CeleryInstaller
             set
             {
                 NextButton.IsEnabled = value;
+                if (value)
+                {
+                    NextButton.Background = new SolidColorBrush(Color.FromRgb(37, 167, 50));
+                } 
+                else
+                {
+                    NextButton.Background = new SolidColorBrush(Color.FromRgb(28, 125, 37));
+                }
             }
         }
 
