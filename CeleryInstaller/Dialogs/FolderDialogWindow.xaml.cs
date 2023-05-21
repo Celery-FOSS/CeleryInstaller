@@ -1,6 +1,7 @@
 ﻿using CeleryInstaller.FileTreeView.ShellClasses;
 using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -199,6 +200,29 @@ namespace CeleryInstaller.Dialogs
                 });
             }
             Hide();
+        }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            DirectoryInfo di = Directory.GetParent(CurrentPath);
+            if (di == null)
+                return;
+
+            FolderList.Clear();
+            SelectedPathBox.Text = di.Name;
+            CurrentPath = di.FullName;
+            try
+            {
+                foreach (string dir in Directory.GetDirectories(di.FullName))
+                {
+                    FolderList.Add(new FolderItem
+                    {
+                        Name = Path.GetFileName(dir),
+                        FullPath = dir
+                    });
+                }
+            }
+            catch { }
         }
     }
 

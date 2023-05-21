@@ -5,7 +5,6 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows.Controls.Primitives;
 using CeleryInstaller.Json;
 
 namespace CeleryInstaller.Core
