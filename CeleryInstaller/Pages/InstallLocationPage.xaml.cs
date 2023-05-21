@@ -68,7 +68,8 @@ namespace CeleryInstaller.Pages
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            App.Instance.CanContinue = Configuration.InstallLocation != "";
+            // Only proceed when an InstallLocation is given.
+            App.Instance.CanContinue = !string.IsNullOrEmpty(Configuration.InstallLocation);
         }
     }
 }
