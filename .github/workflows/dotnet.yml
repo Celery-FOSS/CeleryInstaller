@@ -1,0 +1,26 @@
+name: .NET
+on: [push, pull_request]
+
+jobs:
+  Build:
+    strategy:
+      matrix:
+        configuration: [Debug, Release]
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: microsoft/setup-msbuild@v1.1
+    - name: Setup Nuget
+      uses: nuget/setup-nuget@v1
+    - name: Restore dependencies
+      run: nuget restore CeleryInstaller.sln
+    - name: Build
+      run: |
+        msbuild.exe CeleryInstaller.sln /p:Configuration=${{ matrix.configuration }}
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+       name: CeleryInstaller (${{ matrix.configuration }})
+       path: CeleryInstaller/bin/${{ matrix.configuration }}
