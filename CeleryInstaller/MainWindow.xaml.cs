@@ -79,6 +79,7 @@ namespace CeleryInstaller
                 return;
             }
             CurrentPage++;
+            ValidateAnalyticsCheckbox();
             UserControl currentPage = (UserControl)MainGrid.Children[0];
             UserControl newPage = Pages[CurrentPage];
             newPage.HorizontalAlignment = HorizontalAlignment.Left;
@@ -89,6 +90,11 @@ namespace CeleryInstaller
             MainGrid.Children.Remove(currentPage);
         }
 
+        private void ValidateAnalyticsCheckbox()
+        {
+            AnalyticsConsent.Visibility = CurrentPage <= 1 ? Visibility.Visible : Visibility.Collapsed;
+        }
+
         public async void PreviousPage()
         {
             if (CurrentPage <= 1)
@@ -96,6 +102,7 @@ namespace CeleryInstaller
                 return;
             }
             CurrentPage--;
+            ValidateAnalyticsCheckbox();
             UserControl currentPage = (UserControl)MainGrid.Children[0];
             UserControl newPage = Pages[CurrentPage];
             newPage.HorizontalAlignment = HorizontalAlignment.Left;

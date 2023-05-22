@@ -45,17 +45,26 @@
             </StackPanel>
         </Border>
         <Grid x:Name="MainGrid" Grid.Row="1" Background="{StaticResource BackgroundBrush}" Margin="0,0,0,35">
-            
+
         </Grid>
         <Border x:Name="BottomBar" Grid.Row="1" Background="{StaticResource LightBackgroundBrush}" 
-                VerticalAlignment="Bottom" Height="35">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <controls:RoundButton x:Name="BackButton" Content="Back" 
-                                      Width="60" Margin="7,7,0,7"
-                                      Style="{StaticResource GrayButton}"
-                                      Click="BackButton_Click"/>
-                <controls:RoundButton x:Name="NextButton" Content="Next" Width="60" Margin="7" Click="NextButton_Click"/>
-            </StackPanel>
+        VerticalAlignment="Bottom" Height="35">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" Width="430">
+                    <CheckBox x:Name="AnalyticsConsent" Content="Enable analytics to enhance our product and improve your user experience." Foreground="#FFB9B9B9" IsChecked="True" />
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <controls:RoundButton x:Name="BackButton" Content="Back" Width="60" Margin="7,7,0,7"
+                                  Style="{StaticResource GrayButton}" Click="BackButton_Click" />
+                    <controls:RoundButton x:Name="NextButton" Content="Next" Width="60" Margin="7" Click="NextButton_Click" />
+                </StackPanel>
+            </Grid>
         </Border>
     </Grid>
 </Window>
