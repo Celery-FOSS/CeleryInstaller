@@ -17,14 +17,16 @@ namespace CeleryInstaller.Pages
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            switch ((string)((ComboBoxItem)ChoiceBox.SelectedItem).Content)
+            Configuration.ExecutorPreference selectedUI = (Configuration.ExecutorPreference)ChoiceBox.SelectedIndex;
+
+            switch (selectedUI)
             {
-                case "Legacy UI":
+                case Configuration.ExecutorPreference.LegacyUI:
                     PreviewImage.Source = new BitmapImage(new Uri($"pack://application:,,,/{Assembly.GetExecutingAssembly().GetName().Name};component/Images/CeleryLegacy.png", UriKind.Absolute));
                     App.Instance.CanContinue = true;
                     Configuration.PreferedExecutor = Configuration.ExecutorPreference.LegacyUI;
                     break;
-                case "New UI":
+                case Configuration.ExecutorPreference.NewUI:
                     PreviewImage.Source = new BitmapImage(new Uri("https://raw.githubusercontent.com/sten-code/Celery/master/image.png"));
                     App.Instance.CanContinue = true;
                     Configuration.PreferedExecutor = Configuration.ExecutorPreference.NewUI;
