@@ -92,7 +92,10 @@ namespace CeleryInstaller
 
         private void ValidateAnalyticsCheckbox()
         {
-            AnalyticsConsent.Visibility = CurrentPage <= 1 ? Visibility.Visible : Visibility.Collapsed;
+            AnalyticsConsent.Visibility = Visibility.Collapsed;
+
+            // Temporarily disabled until implemented in Main UI:
+            // AnalyticsConsent.Visibility = CurrentPage <= 1 ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public async void PreviousPage()
