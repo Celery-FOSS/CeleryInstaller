@@ -2,10 +2,10 @@
 {
     public class Configuration
     {
-        public enum ExecutorPreference
+        public enum ExecutorPreference : int
         {
-            NewUI,
-            LegacyUI
+            LegacyUI,
+            NewUI
         }
 
         public ExecutorPreference PreferedExecutor { get; set; }
